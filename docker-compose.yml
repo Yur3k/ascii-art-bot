@@ -1,0 +1,25 @@
+version: '3.10'
+
+services:
+ tg:
+  volumes:
+      - type: volume
+        source: ascii-data
+        read_only: true
+        target: /data
+  build:
+   context: .
+   dockerfile: Dockerfile.tg
+   
+ populate:
+  volumes:
+      - type: volume
+        source: ascii-data
+        read_only: false
+        target: /data
+  build:
+   context: .
+   dockerfile: Dockerfile.db
+
+volumes:
+ ascii-data:
